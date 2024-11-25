@@ -12,7 +12,7 @@ public class CreateUserUseCase(IUserRepository repository, IUnitOfWork unitOfWor
     public async Task<Entities.User> Execute(Entities.User dto, CancellationToken cancellationToken)
     {
         if (await _repository.EmailExists(dto.Email, cancellationToken))
-            throw new ConflictException("Could not create user");
+            throw new ConflictException("Email already exists");
 
         _repository.Create(dto);
         await _unitOfWork.Commit(cancellationToken);

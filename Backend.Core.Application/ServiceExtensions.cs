@@ -1,5 +1,10 @@
 using System.Reflection;
 using Backend.Core.Application.Shared.Behavior;
+using Backend.Core.Application.UseCases.School.CreateSchool;
+using Backend.Core.Application.UseCases.School.DeleteSchool;
+using Backend.Core.Application.UseCases.School.GetAllSchools;
+using Backend.Core.Application.UseCases.School.GetSchoolById;
+using Backend.Core.Application.UseCases.School.UpdateSchool;
 using Backend.Core.Application.UseCases.User.CreateUser;
 using Backend.Core.Application.UseCases.User.DeleteUser;
 using Backend.Core.Application.UseCases.User.GetAllUsers;
@@ -25,5 +30,11 @@ public static class ServiceExtensions
         services.AddTransient<DeleteUserUseCase>();
         services.AddTransient<GetAllUsersUseCase>();
         services.AddTransient<GetUserByIdUseCase>();
+
+        services.AddTransient<CreateSchoolUseCase>();
+        services.AddTransient<UpdateSchoolUseCase>();
+        services.AddTransient<DeleteSchoolUseCase>();
+        services.AddTransient<GetAllSchoolsUseCase>();
+        services.AddTransient<GetSchoolByIdUseCase>();
     }
 }

@@ -12,4 +12,7 @@ public class SchoolRepository(AppDbContext context) : BaseRepository<School>(con
 
     public async Task<School?> GetByEmail(string email, CancellationToken cancellationToken)
         => await _context.Schools.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+
+    public async Task<bool> CnpjExists(string cnpj, CancellationToken cancellationToken)
+        => await _context.Schools.AnyAsync(x => x.Cnpj == cnpj, cancellationToken);
 }
