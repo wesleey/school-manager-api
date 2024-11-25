@@ -1,10 +1,8 @@
-using Backend.Core.Application.Exceptions;
 using Backend.Core.Application.UseCases.User.CreateUser;
 using Backend.Core.Application.UseCases.User.DeleteUser;
 using Backend.Core.Application.UseCases.User.GetAllUsers;
 using Backend.Core.Application.UseCases.User.GetUserById;
 using Backend.Core.Application.UseCases.User.UpdateUser;
-using Backend.Core.Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,9 +17,6 @@ public class UserController(IMediator mediator) : ControllerBase
     [HttpPost("{role}")]
     public async Task<IActionResult> Create(string role, [FromBody] CreateUserRequest request, CancellationToken cancellationToken)
     {
-        if (!Enum.TryParse(typeof(Role), role, true, out var _))
-            throw new BadRequestException($"The specified role '{role}' is invalid. Valid roles are: {string.Join(", ", Enum.GetNames(typeof(Role)))}");
-
         request.Role = role;
         var user = await _mediator.Send(request, cancellationToken);
 
